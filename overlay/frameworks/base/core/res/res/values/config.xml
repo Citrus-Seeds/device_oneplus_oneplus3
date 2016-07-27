@@ -534,4 +534,7 @@
        <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
        <item>0x514</item>      <!-- CPUBOOST MIN_FREQ resource value-->
 </integer-array>
+
+    <!-- If this is true, device supports Sustained Performance Mode. -->
+    <bool name="config_sustainedPerformanceModeSupported">true</bool>
 </resources>
