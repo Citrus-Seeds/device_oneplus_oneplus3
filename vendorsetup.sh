@@ -1,0 +1,2 @@
+add_lunch_combo citrus_oneplus3-userdebug
+add_lunch_combo citrus_oneplus3-eng
