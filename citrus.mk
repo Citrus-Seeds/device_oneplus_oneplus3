@@ -31,3 +31,11 @@ PRODUCT_BRAND := OnePlus
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 TARGET_VENDOR := oneplus
+
+# Citrus-CAF Kenzo Maintainer
+ PRODUCT_BUILD_PROP_OVERRIDES += \
+ DEVICE_MAINTAINERS="Aditya Garg (phenomx1998)"
+
+# Branch
+ PRODUCT_PROPERTY_OVERRIDES += \
+ ro.caf.branch=LA.UM.5.5.r1-02800-8x96.0
