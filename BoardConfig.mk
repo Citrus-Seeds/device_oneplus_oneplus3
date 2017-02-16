@@ -32,6 +32,8 @@ BOARD_VENDOR := oneplus
 
 TARGET_USE_CM_RAMDISK := true
 
+BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
+
 # Assertions
 TARGET_BOARD_INFO_FILE ?= $(PLATFORM_PATH)/board-info.txt
 TARGET_OTA_ASSERT_DEVICE := OnePlus3,oneplus3,OnePlus3T,oneplus3t
