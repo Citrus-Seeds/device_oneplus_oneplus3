@@ -2,6 +2,7 @@
   {
     "repository": "device_oppo_common",
     "target_path": "device/oppo/common"
+    "branch": "n7x"
   },
   {
     "repository": "kernel_oneplus_msm8996",
@@ -10,13 +11,6 @@
   {
     "repository": "TheMuppets/proprietary_vendor_oneplus",
     "target_path": "vendor/oneplus",
-    "branch": cm-14.1
-  },
-  {
-    "repository": "TheMuppets/proprietary_vendor_qcom_binaries",
-    "target_path": vendor/qcom/binaries",
-    "branch": cm-14.1
+    "branch": "cm-14.1"
   }
 ]
-
-
