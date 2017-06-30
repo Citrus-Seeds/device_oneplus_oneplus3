@@ -21,5 +21,8 @@
 
     <!-- sRGB sysfs path -->
     <string name="config_srgb_path">/sys/class/graphics/fb0/srgb</string>
- 
+
+    <!-- Whether device has dash charging support -->
+    <bool name="config_hasDashCharger">true</bool>
+
 </resources>
