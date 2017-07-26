@@ -146,6 +146,18 @@ persist.timed.enable=true
 wifi.interface=wlan0
 
 # ADB at boot
-persist.service.adb.enable=1                                                    
+persist.service.adb.enable=1
 persist.service.debuggable=1
 persist.sys.usb.config=mtp,adb
+
+
+# Opts by MOVZX
+# Spare some RAM
+persist.sys.purgeable_assets=1
+
+# Dex2oat threads for faster app installation
+# Use all 4 Cores/Threads of our CPU
+ro.sys.fw.dex2oat_thread_count=4
+dalvik.vm.dex2oat-threads=4
+dalvik.vm.image-dex2oat-threads=4
+debug.generate-debug-info=false
