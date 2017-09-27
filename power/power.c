@@ -202,8 +202,6 @@ static void power_hint(__attribute__((unused)) struct power_module *module, powe
         case POWER_HINT_SUSTAINED_PERFORMANCE:
         case POWER_HINT_VR_MODE:
         case POWER_HINT_INTERACTION:
-        case POWER_HINT_CPU_BOOST:
-        case POWER_HINT_SET_PROFILE:
         case POWER_HINT_LOW_POWER:
         break;
         case POWER_HINT_VIDEO_ENCODE:
@@ -457,14 +455,6 @@ void set_feature(struct power_module *module, feature_t feature, int state)
     set_device_specific_feature(module, feature, state);
 }
 
-int get_feature(struct power_module *module __unused, feature_t feature)
-{
-    if (feature == POWER_FEATURE_SUPPORTED_PROFILES) {
-        return get_number_of_profiles();
-    }
-    return -1;
-}
-
 struct power_module HAL_MODULE_INFO_SYM = {
     .common = {
         .tag = HARDWARE_MODULE_TAG,
@@ -479,6 +469,5 @@ struct power_module HAL_MODULE_INFO_SYM = {
     .init = power_init,
     .powerHint = power_hint,
     .setInteractive = set_interactive,
-    .setFeature = set_feature,
-    .getFeature = get_feature
+    .setFeature = set_feature
 };

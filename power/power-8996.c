@@ -58,8 +58,6 @@ int vr_mode = 0;
 static pthread_mutex_t s_interaction_lock = PTHREAD_MUTEX_INITIALIZER;
 int launch_handle = -1;
 int launch_mode;
-int cpu_boost_handle = -1;
-int cpu_boost_mode;
 #define CHECK_HANDLE(x) (((x)>0) && ((x)!=-1))
 
 extern void interaction(int duration, int num_args, int opt_list[]);
@@ -237,11 +235,6 @@ int power_hint_override(__unused struct power_module *module,
         STOR_CLK_SCALE_DIS, 0x1,
     };
 
-    int resources_cpu_boost[] = {
-        SCHED_BOOST_ON_V3, 0x1,
-        MIN_FREQ_BIG_CORE_0, 0x3E8,
-    };
-
     int resources_interaction_fling_boost[] = {
         CPUBW_HWMON_MIN_FREQ, 0x33,
         MIN_FREQ_BIG_CORE_0, 0x3E8,
@@ -258,11 +251,6 @@ int power_hint_override(__unused struct power_module *module,
     int *resources_vr_sustained_mode = NULL;
     int *resources_vr_mode = NULL;
     int resources = 0;
-
-    if (hint == POWER_HINT_SET_PROFILE) {
-        set_power_profile(*(int32_t *)data);
-        return HINT_HANDLED;
-    }
 
     /* Skip other hints in power save mode */
     if (current_power_profile == PROFILE_POWER_SAVE)
@@ -328,30 +316,6 @@ int power_hint_override(__unused struct power_module *module,
         return HINT_NONE;
     }
 
-    if (hint == POWER_HINT_CPU_BOOST) {
-        duration = *(int32_t *)data / 1000;
-        if (sustained_performance_mode || vr_mode) {
-            return HINT_HANDLED;
-        }
-
-        if (data && cpu_boost_mode == 0) {
-            cpu_boost_handle = interaction_with_handle(
-                cpu_boost_handle, duration, ARRAY_SIZE(resources_cpu_boost), resources_cpu_boost);
-            if (CHECK_HANDLE(cpu_boost_handle)) {
-                cpu_boost_mode = 1;
-                ALOGI("CPU boost hint handled");
-                return HINT_HANDLED;
-            } else {
-                return HINT_NONE;
-            }
-        } else if (data == NULL && cpu_boost_mode == 1) {
-            release_request(cpu_boost_handle);
-            cpu_boost_mode = 0;
-            return HINT_HANDLED;
-        }
-        return HINT_NONE;
-    }
-
     if (hint == POWER_HINT_VIDEO_ENCODE)
         return process_video_encode_hint(data);
 
@@ -371,11 +335,6 @@ int power_hint_override(__unused struct power_module *module,
                 if (launch_mode == 1) {
                     release_request(launch_handle);
                     launch_mode = 0;
-                }
-                // Ensure that POWER_HINT_CPU_BOOST is not in progress.
-                if (cpu_boost_mode == 1) {
-                    release_request(cpu_boost_handle);
-                    cpu_boost_mode = 0;
                 }
                 sustained_mode_handle = interaction_with_handle(
                     sustained_mode_handle, duration, resources, resources_sustained_mode);
@@ -441,11 +400,6 @@ int power_hint_override(__unused struct power_module *module,
                 if (launch_mode == 1) {
                     release_request(launch_handle);
                     launch_mode = 0;
-                }
-                // Ensure that POWER_HINT_CPU_BOOST is not in progress.
-                if (cpu_boost_mode == 1) {
-                    release_request(cpu_boost_handle);
-                    cpu_boost_mode = 0;
                 }
                 vr_mode_handle = interaction_with_handle(
                     vr_mode_handle, duration, resources, resources_vr_mode);
