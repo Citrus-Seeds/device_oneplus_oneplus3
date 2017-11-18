@@ -20,9 +20,6 @@
 #
 -include vendor/oneplus/oneplus3/BoardConfigVendor.mk
 
-# Inherit from oppo-common
--include device/oppo/common/BoardConfigCommon.mk
-
 BOARD_PATH := device/oneplus/oneplus3
 
 TARGET_NO_BOOTLOADER := true
