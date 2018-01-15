@@ -31,9 +31,6 @@
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveBatteryLed">true</bool>
 
-    <!-- Does device supports fast charging ? -->
-    <bool name="config_FastChargingLedSupported">true</bool>
-
     <integer name="config_defaultNotificationLedOn">1000</integer>
     <integer name="config_defaultNotificationLedOff">1000</integer>
 
@@ -81,9 +78,6 @@
          hysteresis threshold. -->
     <integer name="config_autoBrightnessBrighteningLightDebounce">2000</integer>
     <integer name="config_autoBrightnessDarkeningLightDebounce">4000</integer>
-
-    <!-- Boolean indicating whether we want button brightness support -->
-    <bool name="config_button_brightness_support">true</bool>
 
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
@@ -261,7 +255,7 @@
             16 - App switch
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">19</integer>
+    <integer name="config_deviceHardwareKeys">83</integer>
 
     <!-- Disable lockscreen translucent decor by default -->
     <bool name="config_enableLockScreenTranslucentDecor">true</bool>
@@ -425,7 +419,7 @@
    <!-- Should the pinner service pin the Camera application? -->
    <bool name="config_pinnerCameraApp">true</bool>
 
-   <bool name="config_fingerprintRemoveClientOnCancel">true</bool>
+   <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
 
    <!-- If this is true, device supports Sustained Performance Mode. -->
    <bool name="config_sustainedPerformanceModeSupported">true</bool>
@@ -436,7 +430,13 @@
    <!-- Flag specifying whether or not IMS will use the ImsResolver dynamically -->
    <bool name="config_dynamic_bind_ims">true</bool>
 
-   <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
-   in hardware. -->
-   <bool name="config_setColorTransformAccelerated">true</bool>
+    <!-- Proximity check on screen on -->
+    <bool name="config_proximityCheckOnWake">true</bool>
+
+    <!-- Proximity check timeout -->
+    <integer name="config_proximityCheckTimeout">100</integer>
+
+    <!-- Proximity check on screen on default -->
+    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
+
 </resources>
