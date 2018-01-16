@@ -37,8 +37,8 @@
 #include "util.h"
 #include "log.h"
 
-namespace android {
-namespace init {
+//namespace android {
+//namespace init {
 
 static int read_file2(const char *fname, char *data, int max_size)
 {
@@ -86,26 +86,26 @@ void init_alarm_boot_properties()
      * 8 -> KPDPWR_N pin toggled (power key pressed)
      */
         if(buf[0] == '3')
-            property_set("ro.alarm_boot", "true");
+            android::init::property_set("ro.alarm_boot", "true");
         else
-            property_set("ro.alarm_boot", "false");
+            android::init::property_set("ro.alarm_boot", "false");
     }
 }
 
 void load_op3(const char *model) {
-    property_set("ro.product.model", model);
-    property_set("ro.build.product", "OnePlus3");
-    property_set("ro.product.device", "OnePlus3");
-    property_set("ro.build.description", "OnePlus3-user 7.1.1 NMF26F 25 dev-keys");
-    property_set("ro.build.fingerprint", "OnePlus/OnePlus3/OnePlus3:7.1.1/NMF26F/02070826:user/release-keys");
+    android::init::property_set("ro.product.model", model);
+    android::init::property_set("ro.build.product", "OnePlus3");
+    android::init::property_set("ro.product.device", "OnePlus3");
+    android::init::property_set("ro.build.description", "OnePlus3-user 7.1.1 NMF26F 25 dev-keys");
+    android::init::property_set("ro.build.fingerprint", "OnePlus/OnePlus3/OnePlus3:7.1.1/NMF26F/02070826:user/release-keys");
 }
 
 void load_op3t(const char *model) {
-    property_set("ro.product.model", model);
-    property_set("ro.build.product", "OnePlus3");
-    property_set("ro.product.device", "OnePlus3T");
-    property_set("ro.build.description", "OnePlus3-user 7.1.1 NMF26F 7 dev-keys");
-    property_set("ro.build.fingerprint", "OnePlus/OnePlus3/OnePlus3T:7.1.1/NMF26F/02072026:user/release-keys");
+    android::init::property_set("ro.product.model", model);
+    android::init::property_set("ro.build.product", "OnePlus3");
+    android::init::property_set("ro.product.device", "OnePlus3T");
+    android::init::property_set("ro.build.description", "OnePlus3-user 7.1.1 NMF26F 7 dev-keys");
+    android::init::property_set("ro.build.fingerprint", "OnePlus/OnePlus3/OnePlus3T:7.1.1/NMF26F/02072026:user/release-keys");
 }
 
 static void import_panel_prop(const std::string& key, const std::string& value, bool for_emulator) {
@@ -113,9 +113,9 @@ static void import_panel_prop(const std::string& key, const std::string& value, 
 
     if (key.compare("mdss_mdp.panel") == 0) {
         if (value.find("s6e3fa3") != std::string::npos)
-            property_set("ro.product.panel", "samsung_s6e3fa3_1080p");
+            android::init::property_set("ro.product.panel", "samsung_s6e3fa3_1080p");
         if (value.find("s6e3fa5") != std::string::npos)
-            property_set("ro.product.panel", "samsung_s6e3fa5_1080p");
+            android::init::property_set("ro.product.panel", "samsung_s6e3fa5_1080p");
     }
 }
 
@@ -126,48 +126,46 @@ void vendor_load_properties() {
     if (rf_version == "11") {
         /* China */
         load_op3("ONEPLUS A3000");
-        property_set("ro.telephony.default_network", "22");
-        property_set("telephony.lteOnCdmaDevice", "1");
-        property_set("persist.vendor.radio.force_on_dc", "true");
-        property_set("ro.rf_version", "TDD_FDD_All");
+        android::init::property_set("ro.telephony.default_network", "22");
+        android::init::property_set("telephony.lteOnCdmaDevice", "1");
+        android::init::property_set("persist.vendor.radio.force_on_dc", "true");
+        android::init::property_set("ro.rf_version", "TDD_FDD_All");
     } else if (rf_version == "21") {
         /* Europe / Asia model */
         load_op3("ONEPLUS A3003");
-        property_set("ro.telephony.default_network", "9");
-        property_set("ro.rf_version", "TDD_FDD_Eu");
+        android::init::property_set("ro.telephony.default_network", "9");
+        android::init::property_set("ro.rf_version", "TDD_FDD_Eu");
     } else if (rf_version == "31") {
         /* Americas */
         load_op3("ONEPLUS A3000");
-        property_set("ro.telephony.default_network", "22");
-        property_set("telephony.lteOnCdmaDevice", "1");
-        property_set("persist.vendor.radio.force_on_dc", "true");
-        property_set("ro.rf_version", "TDD_FDD_Am");
+        android::init::property_set("ro.telephony.default_network", "22");
+        android::init::property_set("telephony.lteOnCdmaDevice", "1");
+        android::init::property_set("persist.vendor.radio.force_on_dc", "true");
+        android::init::property_set("ro.rf_version", "TDD_FDD_Am");
     } else if (rf_version == "12") {
         /* China model */
         load_op3t("ONEPLUS A3010");
-        property_set("ro.telephony.default_network", "22");
-        property_set("telephony.lteOnCdmaDevice", "1");
-        property_set("persist.vendor.radio.force_on_dc", "true");
-        property_set("ro.rf_version", "TDD_FDD_All");
+        android::init::property_set("ro.telephony.default_network", "22");
+        android::init::property_set("telephony.lteOnCdmaDevice", "1");
+        android::init::property_set("persist.vendor.radio.force_on_dc", "true");
+        android::init::property_set("ro.rf_version", "TDD_FDD_All");
     } else if (rf_version == "22") {
         /* Europe / Asia model */
         load_op3t("ONEPLUS A3003");
-        property_set("ro.telephony.default_network", "9");
-        property_set("ro.rf_version", "TDD_FDD_Eu");
+        android::init::property_set("ro.telephony.default_network", "9");
+        android::init::property_set("ro.rf_version", "TDD_FDD_Eu");
     } else if (rf_version == "32") {
         /* North America model */
         load_op3t("ONEPLUS A3000");
-        property_set("ro.telephony.default_network", "22");
-        property_set("telephony.lteOnCdmaDevice", "1");
-        property_set("persist.vendor.radio.force_on_dc", "true");
-        property_set("ro.rf_version", "TDD_FDD_Am");
+        android::init::property_set("ro.telephony.default_network", "22");
+        android::init::property_set("telephony.lteOnCdmaDevice", "1");
+        android::init::property_set("persist.vendor.radio.force_on_dc", "true");
+        android::init::property_set("ro.rf_version", "TDD_FDD_Am");
     } else {
         LOG(INFO) << __func__ << "unexcepted rf version!\n";
     }
 
     init_alarm_boot_properties();
 
-    import_kernel_cmdline(false, import_panel_prop);
+    android::init::import_kernel_cmdline(false, import_panel_prop);
 }
-}  // namespace init
-}  // namespace android
