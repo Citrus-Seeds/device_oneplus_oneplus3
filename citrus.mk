@@ -1,5 +1,5 @@
 # Copyright (C) 2010 The Android Open Source Project
-#
+#				2018 Citrus-CAF Project
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -23,9 +23,6 @@
 # $(call inherit-product, device/sample/products/backup_overlay.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
-# Get the prebuilt list of APNs
-$(call inherit-product, vendor/omni/config/gsm.mk)
-
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
@@ -33,16 +30,16 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 TARGET_BOOTANIMATION_SIZE := 1080p
 
 # Inherit from our custom product configuration
-$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, vendor/citrus/common.mk)
 
-PRODUCT_PACKAGE_OVERLAYS += vendor/omni/overlay/CarrierConfig
+# Inherit from our revision specific configuration
+$(call inherit-product, vendor/citrus/config/common_la.um.mk)
 
 # Inherit from hardware-specific part of the product configuration
 $(call inherit-product, device/oneplus/oneplus3/device.mk)
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := omni_oneplus3
+PRODUCT_NAME := citrus_oneplus3
 PRODUCT_DEVICE := oneplus3
 PRODUCT_BRAND := OnePlus
 PRODUCT_MANUFACTURER := OnePlus
-
