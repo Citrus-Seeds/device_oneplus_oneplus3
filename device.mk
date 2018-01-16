@@ -23,7 +23,6 @@
 
 $(call inherit-product, device/oneplus/oneplus3/hidl.mk)
 $(call inherit-product, vendor/oneplus/oneplus3/oneplus3-vendor.mk)
-$(call inherit-product, vendor/citrus/build/configs/phone-xxhdpi-4096-dalvik-heap.mk)
 $(call inherit-product, vendor/citrus/build/configs/phone-xxhdpi-2048-hwui-memory.mk)
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -148,6 +147,15 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/vendor/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:system/vendor/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/vendor/etc/usb_audio_policy_configuration.xml
+
+# Dalvik heap
+ PRODUCT_PROPERTY_OVERRIDES += \
+   dalvik.vm.heapstartsize=16m \
+   dalvik.vm.heapgrowthlimit=256m \
+   dalvik.vm.heapsize=512m \
+   dalvik.vm.heaptargetutilization=0.75 \
+   dalvik.vm.heapminfree=4m \
+   dalvik.vm.heapmaxfree=8m
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
