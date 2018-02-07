@@ -286,6 +286,9 @@ PRODUCT_PACKAGES += \
     libcamera_shim \
     SnapdragonCamera
 
+PRODUCT_PACKAGES += \
+    Oneplus3Parts
+
 # bluetooth
 PRODUCT_PACKAGES += \
     libbt-vendor
