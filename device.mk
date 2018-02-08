@@ -283,7 +283,8 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 PRODUCT_PACKAGES += \
-    SnapdragonCamera \
+    libcamera_shim \
+    SnapdragonCamera
 
 # bluetooth
 PRODUCT_PACKAGES += \

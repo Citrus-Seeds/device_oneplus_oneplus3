@@ -38,6 +38,7 @@ on early-init
 on init
     # Support legacy paths
     symlink /sdcard /storage/sdcard0
+    export LD_SHIM_LIBS /system/vendor/lib/hw/camera.msm8996.so|libcamera_shim.so:/system/lib/libFNVfbEngineHAL.so|libcamera_shim.so
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
